@@ -31,5 +31,7 @@
 then make change disk
 `"outDir": "./dist",`
 
-`npx tsc 
+` 
+npx prisma init`
+`
 npx prisma migrate dev --name init`
