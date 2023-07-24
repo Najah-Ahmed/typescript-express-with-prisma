@@ -11,20 +11,20 @@ import {
 const router = express.Router();
 
 // *** All User
-router.get("/api", getAllUsers);
+router.get("/", getAllUsers);
 
 // *** Single User
-router.get("/api/:id", getUser);
+router.get("/:id", getUser);
 
 // *** create User
-router.post("/api", createUser);
+router.post("/", createUser);
 
 // *** update User
-router.put("/api/:id", updatedUser);
+router.put("/:id", updatedUser);
 
 // *** delete User
-router.delete("/api/:id", deletedUser);
+router.delete("/:id", deletedUser);
 
 // *** create many users
-// router.post("/api/createMany", createManyUser);
+// router.post("/createMany", createManyUser);
 export default router;

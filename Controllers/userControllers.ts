@@ -5,7 +5,11 @@ const prisma = new PrismaClient();
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      include: {
+        books: true,
+      },
+    });
     res.json(users);
   } catch (error) {
     res.status(500).json({
@@ -20,6 +24,10 @@ export const getUser = async (req: Request, res: Response) => {
     const user = await prisma.user.findUnique({
       where: {
         id: Number(req.params.id),
+      },
+      // include all books
+      include: {
+        books: true,
       },
     });
     res.status(200).json(user);

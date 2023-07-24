@@ -9,12 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createManyUser = exports.deletedUser = exports.updatedUser = exports.createUser = exports.getUser = exports.getAllUsers = void 0;
+exports.deletedUser = exports.updatedUser = exports.createUser = exports.getUser = exports.getAllUsers = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield prisma.user.findMany();
+        const users = yield prisma.user.findMany({
+            include: {
+                books: true,
+            },
+        });
         res.json(users);
     }
     catch (error) {
@@ -30,6 +34,10 @@ const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield prisma.user.findUnique({
             where: {
                 id: Number(req.params.id),
+            },
+            // include all books
+            include: {
+                books: true,
             },
         });
         res.status(200).json(user);
@@ -103,19 +111,17 @@ const deletedUser = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.deletedUser = deletedUser;
 // ?! Ahh I see. just found this. createMany is not supported for SQLite.
-const createManyUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { userList } = req.body;
-        const users = yield prisma.user.createMany({
-            data: userList,
-        });
-        res.json(users);
-    }
-    catch (error) {
-        res.status(500).json({
-            message: "something went wrong",
-            //   msg: error.message,
-        });
-    }
-});
-exports.createManyUser = createManyUser;
+// export const createManyUser = async (req: Request, res: Response) => {
+//   try {
+//     const { userList } = req.body;
+//     const users = await prisma.user.createMany({
+//       data: userList,
+//     });
+//     res.json(users);
+//   } catch (error) {
+//     res.status(500).json({
+//       message: "something went wrong",
+//       //   msg: error.message,
+//     });
+//   }
+// };

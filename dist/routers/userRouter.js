@@ -7,15 +7,15 @@ const express_1 = __importDefault(require("express"));
 const userControllers_1 = require("../Controllers/userControllers");
 const router = express_1.default.Router();
 // *** All User
-router.get("/api", userControllers_1.getAllUsers);
+router.get("/", userControllers_1.getAllUsers);
 // *** Single User
-router.get("/api/:id", userControllers_1.getUser);
+router.get("/:id", userControllers_1.getUser);
 // *** create User
-router.post("/api", userControllers_1.createUser);
+router.post("/", userControllers_1.createUser);
 // *** update User
-router.put("/api/:id", userControllers_1.updatedUser);
+router.put("/:id", userControllers_1.updatedUser);
 // *** delete User
-router.delete("/api/:id", userControllers_1.deletedUser);
+router.delete("/:id", userControllers_1.deletedUser);
 // *** create many users
-router.post("/api/createMany", userControllers_1.createManyUser);
+// router.post("/createMany", createManyUser);
 exports.default = router;

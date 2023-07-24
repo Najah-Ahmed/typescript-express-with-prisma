@@ -14,11 +14,14 @@ datasource db {
 
 model Book{
   id Int @default(autoincrement()) @id
-  bookName String
+  bookTitle String @unique
   year Int
   author User@relation(fields: [userId],references: [id])
   userId Int
-}
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+} 
+// ? nullable add "author?" 
 
 
 model User {
@@ -26,5 +29,8 @@ model User {
   username String
   email String @unique
   password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   books Book[]
+
 }

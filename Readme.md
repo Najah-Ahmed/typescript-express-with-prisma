@@ -4,25 +4,20 @@
 
 ###### packages
 
-`npm install -D @prisma/client
+`npm install -D 
+    typescript
     concurrently
     dotenv
     rimraf
   `
 
-`npm install  @prisma/client
+`npm install
+    @prisma/client
     @types/express
     @types/node
     express
     prisma
   `
-
-###### package.json Script
-
-`"scripts": {
-    "build": "rimraf dist && npx tsc",
-    "dev": "concurrently \"npx tsc -w\" \" nodemon dist/app.js\" "
-  },`
 
 ###### Commands
 
@@ -31,6 +26,12 @@
 then make change disk
 `"outDir": "./dist",`
 
+###### package.json Script
+
+`"scripts": {
+    "build": "rimraf dist && npx tsc",
+    "dev": "concurrently \"npx tsc -w\" \" nodemon dist/app.js\" "
+  },`
 ` 
 npx prisma init`
 `
