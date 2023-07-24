@@ -5,7 +5,7 @@ import {
   createUser,
   updatedUser,
   deletedUser,
-  createManyUser,
+  // createManyUser,
 } from "../Controllers/userControllers";
 
 const router = express.Router();
@@ -26,5 +26,5 @@ router.put("/api/:id", updatedUser);
 router.delete("/api/:id", deletedUser);
 
 // *** create many users
-router.post("/api/createMany", createManyUser);
+// router.post("/api/createMany", createManyUser);
 export default router;
